@@ -9,11 +9,11 @@
 using namespace std;
 
 class Usuario {
-private:
+protected:
     string nombre;
     string id;
 public:
-    Usuario(string& nombre, string& id);
+    Usuario(string nombre, string id);
     virtual ~Usuario();
 
     string getNombre() const;

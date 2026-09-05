@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Proyecto1 main.cpp
         Usuario.cpp
-        Usuario.h)
+        Usuario.h
+        Estudiante.cpp
+        Estudiante.h)
