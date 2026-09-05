@@ -3,4 +3,6 @@ project(Proyecto1)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Proyecto1 main.cpp)
+add_executable(Proyecto1 main.cpp
+        Usuario.cpp
+        Usuario.h)
