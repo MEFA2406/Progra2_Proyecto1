@@ -13,4 +13,18 @@ add_executable(Proyecto1 main.cpp
         NodoPrestamo.cpp
         NodoPrestamo.h
         ListaPrestamo.cpp
-        ListaPrestamo.h)
+        ListaPrestamo.h
+        ListaMaterial.cpp
+        ListaMaterial.h
+        NodoMaterial.cpp
+        NodoMaterial.h
+        Tesis.cpp
+        Tesis.h
+        Revista.cpp
+        Revista.h
+        Libro.cpp
+        Libro.h
+        MaterialBiblioteca.cpp
+        MaterialBiblioteca.h
+        Menu.cpp
+        Menu.h)

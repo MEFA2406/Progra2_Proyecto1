@@ -1,7 +1,3 @@
-//
-// Created by Manol on 9/6/2026.
-//
-
 #include "NodoPrestamo.h"
 
 NodoPrestamo::NodoPrestamo(Prestamo *dato) : dato(dato){
