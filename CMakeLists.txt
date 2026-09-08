@@ -7,4 +7,10 @@ add_executable(Proyecto1 main.cpp
         Usuario.cpp
         Usuario.h
         Estudiante.cpp
-        Estudiante.h)
+        Estudiante.h
+        Prestamo.cpp
+        Prestamo.h
+        NodoPrestamo.cpp
+        NodoPrestamo.h
+        ListaPrestamo.cpp
+        ListaPrestamo.h)
