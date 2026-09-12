@@ -1,35 +1,40 @@
 #include "ListaMaterial.h"
 ListaMaterial::ListaMaterial() {
-    inicio = NULL;
-    actual = NULL;
-    ultimo = NULL;
+    inicio = nullptr;
+    actual = nullptr;
 }
 
-ListaMaterial::ListaMaterial(NodoMaterial *inicio, NodoMaterial *ultimo, NodoMaterial *actual) {
+ListaMaterial::ListaMaterial(NodoMaterial *inicio, NodoMaterial *actual) {
     this->inicio = inicio;
-    this->ultimo = ultimo;
     this->actual = actual;
 }
-void ListaMaterial::setInicio(NodoMaterial *inicio) {
-    this->inicio = inicio;
-}
-NodoMaterial *ListaMaterial::getInicio() const {
-    return inicio;
-}
-
-void ListaMaterial::setActual(NodoMaterial *actual) {
-    this->actual = actual;
-}
-NodoMaterial *ListaMaterial::getActual() const {
-    return actual;
-}
-
-string ListaMaterial::toStringMaterial() {
-    std::ostringstream s;
-    actual=inicio;
-    while (actual!=NULL) {
-        s<<actual->toString();
-        actual=actual->get_siguienteMaterial();
+ListaMaterial::~ListaMaterial() {
+    if (inicio != nullptr) {
+        removeInicio();
     }
-    return s.str();
+}
+
+void ListaMaterial::insertInicio(MaterialBiblioteca* material) {
+    auto actual= new NodoMaterial(material);
+    actual->set_siguienteMaterial(inicio);
+    inicio = actual;
+}
+
+void ListaMaterial::removeInicio() {
+    if (inicio != nullptr) {
+        NodoMaterial* actual = inicio;
+        inicio = inicio->get_siguienteMaterial();
+        delete actual;
+    }
+}
+
+bool ListaMaterial::findMaterialID(int id, string titulo) {
+    actual = inicio;
+    while (actual!=nullptr && actual->get_siguienteMaterial()!=nullptr) {
+        if (actual->get_material()->getIdMaterial()==id||actual->get_material()->getNombreMaterial()==titulo) {
+            return true;
+        }
+        actual = actual->get_siguienteMaterial();
+    }
+    return false;
 }

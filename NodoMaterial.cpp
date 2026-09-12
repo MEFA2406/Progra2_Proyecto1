@@ -9,13 +9,9 @@ NodoMaterial::~NodoMaterial() {
 NodoMaterial *NodoMaterial::get_siguienteMaterial()  {
     return siguienteMaterial;
 }
-MaterialBiblioteca *NodoMaterial::get_material()  {
+MaterialBiblioteca *NodoMaterial::get_material() const{
     return material;
 }
 void NodoMaterial::set_siguienteMaterial(NodoMaterial *siguienteMaterial) {
     this->siguienteMaterial=siguienteMaterial;
-}
-
-string NodoMaterial::toString(){
-   // return material->toString();
 }

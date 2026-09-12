@@ -1,8 +1,18 @@
 #ifndef PROYECTO1_REVISTA_H
 #define PROYECTO1_REVISTA_H
-
-
-class Revista {
+#include "MaterialBiblioteca.h"
+class Revista: public MaterialBiblioteca {
+    private:
+    int edicion;
+    string genero;
+    public:
+    Revista();
+    Revista(int edicion, string genero);
+    ~Revista();
+    void setEdicion(int edicion);
+    int getEdicion();
+    void setGenero(string genero);
+    string getGenero();
 };
 
 

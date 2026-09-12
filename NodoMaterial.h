@@ -9,10 +9,10 @@ public:
     NodoMaterial();
     NodoMaterial(MaterialBiblioteca *material);
     ~NodoMaterial();
-    MaterialBiblioteca *get_material() ;
+    MaterialBiblioteca *get_material() const;
     NodoMaterial *get_siguienteMaterial() ;
     void set_siguienteMaterial(NodoMaterial *siguienteMaterial);
-    string toString();
+    //string toString();
 };
 
 

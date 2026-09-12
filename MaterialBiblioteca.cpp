@@ -31,10 +31,11 @@ void MaterialBiblioteca::setAnnoMaterial(const int annoMaterial) {
 }
 MaterialBiblioteca::~MaterialBiblioteca() {}
 
-string MaterialBiblioteca::toStringMaterial() {
+/*string MaterialBiblioteca::toStringMaterial() {
    stringstream ss;
     ss<<"Titulo:"<<nombreMaterial<<endl;
     ss<<"Autor:"<<autorMaterial<<endl;
     ss<<"A"<<char(164)<<"o:"<<annoMaterial<<endl;
+    ss<<"Identificacion:"<<idMaterial<<endl;
     return ss.str();
-}
+}*/

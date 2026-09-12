@@ -1,6 +1,7 @@
 #ifndef PROYECTO1_MATERIALBIBLIOTECA_H
 #define PROYECTO1_MATERIALBIBLIOTECA_H
 #include <string>
+#include "Archivo.h"
 #include <sstream>
 using namespace std;
 

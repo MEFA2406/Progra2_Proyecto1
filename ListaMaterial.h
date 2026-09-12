@@ -6,18 +6,17 @@ class ListaMaterial {
 private:
     NodoMaterial *inicio;
     NodoMaterial *actual;
-    NodoMaterial *ultimo;
 public:
     ListaMaterial();
-    ListaMaterial(NodoMaterial *inicio, NodoMaterial *ultimo, NodoMaterial *actual);
+    ListaMaterial(NodoMaterial *inicio, NodoMaterial *actual);
     NodoMaterial* getInicio() const;
     void setInicio(NodoMaterial*);
     NodoMaterial* getActual() const;
     void setActual(NodoMaterial*);
 
     string toStringMaterial();
-    void insertFinal(MaterialBiblioteca*);
-    bool removeFinal();
+    void insertInicio(MaterialBiblioteca*);
+    void removeInicio();
     bool findMaterialID(int,string);
     MaterialBiblioteca* obtenerMaterial(string);
     ~ListaMaterial();
