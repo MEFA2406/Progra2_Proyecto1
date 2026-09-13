@@ -54,6 +54,10 @@ void ListaPrestamo::agregarPrimero(Prestamo *elPrestamo) {
 
 string ListaPrestamo::toString() {
     stringstream ss;
-
+    NodoPrestamo* actual = primero;
+    while (actual!=nullptr) {
+        ss<<actual->toString()<<endl;
+        actual = actual->getSiguiente();
+    }
     return ss.str();
 }

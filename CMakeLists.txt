@@ -30,4 +30,6 @@ add_executable(Proyecto1 main.cpp
         Menu.h
         Archivo.cpp
         Archivo.h
+        Biblioteca.cpp
+        Biblioteca.h
 )
