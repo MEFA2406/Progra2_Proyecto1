@@ -9,16 +9,16 @@ private:
 public:
     ListaMaterial();
     ListaMaterial(NodoMaterial *inicio, NodoMaterial *actual);
-    NodoMaterial* getInicio() const;
+    NodoMaterial* getInicio();
     void setInicio(NodoMaterial*);
-    NodoMaterial* getActual() const;
+    NodoMaterial* getActual();
     void setActual(NodoMaterial*);
 
     string toStringMaterial();
-    void insertInicio(MaterialBiblioteca*);
-    void removeInicio();
-    bool findMaterialID(int,string);
-    MaterialBiblioteca* obtenerMaterial(string);
+    void ingresarMaterial(MaterialBiblioteca*);
+    void removerMaterial();
+    MaterialBiblioteca* obtenerMaterialTitulo(string titulo);
+    MaterialBiblioteca* obtenerMaterialId(int id);
     ~ListaMaterial();
 };
 
