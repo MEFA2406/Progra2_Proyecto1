@@ -4,12 +4,13 @@
 
 class Tesis : public MaterialBiblioteca {
 private:
-    string tipoTesis;
+    string grado;
     public:
-    Tesis();
+    Tesis(int id, string titulo, string autor, int annio, string grado);
     ~Tesis();
-    string getTipoTesis();
-    void setTipoTesis(string tipoTesis);
+    void setGrado(string grado);
+    string getGrado();
+    string obtenerTipo();
 
 };
 

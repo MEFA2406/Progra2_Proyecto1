@@ -6,13 +6,13 @@ class Revista: public MaterialBiblioteca {
     int edicion;
     string genero;
     public:
-    Revista();
-    Revista(int edicion, string genero);
+    Revista(int id, string titulo, string autor, int annio, int edicion, string genero);
     ~Revista();
     void setEdicion(int edicion);
     int getEdicion();
     void setGenero(string genero);
     string getGenero();
+    string obtenerTipo();
 };
 
 
