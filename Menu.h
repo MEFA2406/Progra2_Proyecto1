@@ -3,23 +3,39 @@
 #include "MaterialBiblioteca.h"
 #include "NodoMaterial.h"
 #include "Archivo.h"
+#include "Prestamo.h"
+#include "Tesis.h"
+
 #include <string>
+
+#include "ListaMaterial.h"
+#include "ListaPrestamo.h"
 
 using namespace std;
 
 class Menu {
 private:
-    NodoMaterial* inicio;
-    Archivo* guardarMaterialBiblioteca;
-public:
-    Menu(Archivo* guardarMaterialBiblio);
+    ListaMaterial* listaMaterial;
+    ListaPrestamo* listaPrestamo;
+    string archivoMaterial;
+    string archivoPrestamo;
+    void mostrarMenuPrincipal();
+    void menuMaterial();
+    void menuPrestamo();
+    void registrarPrestamo();
+    void registrarMaterial();
+    void listarMaterial();
+    void buscarMaterial();
+    void devolverMaterial();
+    void guardarMaterial();
+    void cargarMaterial();
+    void cargarPrestamo();
+    void guardarPrestamo();
+    void inicializarDatos();
+    public:
+    Menu();
     ~Menu();
-    string registrarMaterial(string titulo, string autor, int annio, int id);
-    string listarMaterial() const;
-    string devolverMaterial(int id);
-    string guardarMaterial();
-    string cargarMaterial();
-    string registrarPrestamo(string titulo, string autor, int annio, int id, string usuario, int idUsuario);
+    void iniciar();
 };
 
 
