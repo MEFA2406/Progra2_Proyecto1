@@ -13,7 +13,7 @@ public:
     ListaPrestamo();
     ~ListaPrestamo();
     void eliminarPrimero();
-    bool eliminarPrestamoId(string id);
+    bool eliminarPrestamoId(string idUsuario, int idMaterial);
     void agregarPrimero(Prestamo *elPrestamo);
     void setPrimero(NodoPrestamo*);
     NodoPrestamo* getPrimero();

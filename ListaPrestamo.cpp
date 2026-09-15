@@ -28,7 +28,7 @@ void ListaPrestamo::eliminarPrimero() {
     }
 }
 
-bool ListaPrestamo::eliminarPrestamoId(string id) {
+bool ListaPrestamo::eliminarPrestamoId(string id, int idMaterial) {
     NodoPrestamo* actual = primero;
 
     if (primero != nullptr) {
