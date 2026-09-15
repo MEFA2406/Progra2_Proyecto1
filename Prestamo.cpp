@@ -5,7 +5,7 @@
 #include "Prestamo.h"
 #include "sstream"
 
-Prestamo::Prestamo(string id, MaterialBiblioteca* material, Usuario *usuario, string fecha) {
+Prestamo::Prestamo(string id, string material, string usuario, string fecha) {
     this->id = id;
     this->material = material;
     this->usuario = usuario;
@@ -13,14 +13,13 @@ Prestamo::Prestamo(string id, MaterialBiblioteca* material, Usuario *usuario, st
 }
 
 Prestamo::~Prestamo() {
-    delete this->usuario;
 }
 
 string Prestamo::getId() {
     return this->id;
 }
 
-MaterialBiblioteca * Prestamo::getMaterial() {
+string Prestamo::getMaterial() {
     return this->material;
 }
 
@@ -28,11 +27,11 @@ string Prestamo::getFechaPrestamo() {
     return this->fechaPrestamo;
 }
 
-void Prestamo::setMaterial(MaterialBiblioteca *material) {
+void Prestamo::setMaterial(string material) {
     this->material = material;
 }
 
-void Prestamo::setCliente(Usuario *usuario) {
+void Prestamo::setCliente(string usuario) {
     this->usuario = usuario;
 }
 
@@ -40,15 +39,15 @@ void Prestamo::setFechaPrestamo(string fechaPrestamo) {
     this->fechaPrestamo = fechaPrestamo;
 }
 
-Usuario * Prestamo::getCliente() {
+string Prestamo::getCliente() {
     return this->usuario;
 }
 
 string Prestamo::toString() {
     stringstream ss;
     ss << "Id del prestamo" << this->id << endl;
-    ss<<"Nombre del usuario: "<<usuario->getNombre()<<endl;
-    ss << "Informacion del material: \n" << this->material->toStringMaterial();
+    ss<<"Nombre del usuario: "<<this->usuario<<endl;
+    ss << "Informacion del material: " << this->material<<endl;
     ss<<"Fecha del prestamo: "<<this->fechaPrestamo;
     return ss.str();
 }

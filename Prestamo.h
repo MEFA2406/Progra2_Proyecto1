@@ -4,26 +4,25 @@
 
 #ifndef PROYECTO1_PRESTAMO_H
 #define PROYECTO1_PRESTAMO_H
-#include "Usuario.h"
 #include "MaterialBiblioteca.h"
 
 class Prestamo {
 private:
     string id;
-    Usuario* usuario;
-    MaterialBiblioteca* material;
+    string usuario;
+    string material;
     string fechaPrestamo;
 public:
-    Prestamo(string id, MaterialBiblioteca* material, Usuario* usuario, string fechaPrestamo);
+    Prestamo(string id, string material, string usuario, string fechaPrestamo);
     ~Prestamo();
 
     string getId();
-    MaterialBiblioteca* getMaterial();
-    Usuario* getCliente();
+    string getMaterial();
+    string getCliente();
     string getFechaPrestamo();
 
-    void setMaterial(MaterialBiblioteca* material);
-    void setCliente(Usuario* usuario);
+    void setMaterial(string material);
+    void setCliente(string usuario);
     void setFechaPrestamo(string fechaPrestamo);
 
     string toString();
