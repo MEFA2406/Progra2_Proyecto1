@@ -1,5 +1,6 @@
 #include "Libro.h"
 Libro::~Libro() {}
+Libro::Libro(int id, string titulo, string autor, int annio, int paginas, string genero) :MaterialBiblioteca(id, titulo,autor,annio) {}
 void Libro::setPaginas(int paginas) {
     this->paginas=paginas;
 }
@@ -11,4 +12,8 @@ void Libro::setGenero(string genero) {
 }
 string Libro::getGenero() {
     return this->genero;
+}
+
+string Libro::obtenerTipo() {
+    return "Libro";
 }

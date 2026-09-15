@@ -9,12 +9,13 @@ private:
     string genero;
     int paginas;
     public:
-    Libro(string titulo, int paginas);
+    Libro(int id, string titulo, string autor, int annio, int paginas, string genero);
     ~Libro();
-    void setGenero(string titulo);
+    void setGenero(string genero);
     void setPaginas(int paginas);
     string getGenero();
     int getPaginas();
+    string obtenerTipo();
 };
 
 
