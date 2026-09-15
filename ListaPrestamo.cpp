@@ -14,7 +14,12 @@ ListaPrestamo::~ListaPrestamo() {
         eliminarPrimero();
     }
 }
-
+void ListaPrestamo::setPrimero(NodoPrestamo* primero) {
+    NodoPrestamo* actual = primero;
+}
+NodoPrestamo* ListaPrestamo::getPrimero() {
+    return primero;
+}
 void ListaPrestamo::eliminarPrimero() {
     if (primero != nullptr) {
         NodoPrestamo* actual = primero;

@@ -12,11 +12,11 @@ private:
 public:
     ListaPrestamo();
     ~ListaPrestamo();
-
     void eliminarPrimero();
     bool eliminarPrestamoId(string id);
-
     void agregarPrimero(Prestamo *elPrestamo);
+    void setPrimero(NodoPrestamo*);
+    NodoPrestamo* getPrimero();
     string toString();
 
 };
