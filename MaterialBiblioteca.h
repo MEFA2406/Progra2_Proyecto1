@@ -21,6 +21,7 @@ public:
     void setNombreMaterial(const string nombreMaterial);
     void setAutorMaterial(const string autorMaterial);
     void setAnnoMaterial(const int annoMaterial);
+    virtual string obtenerTipo();
     string toStringMaterial();
     ~MaterialBiblioteca();
 };
