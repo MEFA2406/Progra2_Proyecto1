@@ -1,62 +1,102 @@
 #include "Archivo.h"
+#include "MaterialBiblioteca.h"
 #include <fstream>
 
-void Archivo::guardarMaterialBiblioteca(MaterialBiblioteca *material) {
-    ofstream archivo("biblioteca.txt", ios::app);
-    if (archivo.is_open()) {
-        archivo<<material->getNombreMaterial()<<endl;
-        archivo<<material->getAutorMaterial()<<endl;
-        archivo<<material->getIdMaterial()<<endl;
-        archivo<<material->getAnnoMaterial()<<endl;
-        archivo.close();
-    }
-}
-void Archivo::reescribirMaterialBiblioteca(NodoMaterial* inicio) {
-    ofstream archivo("biblioteca.txt",ios::trunc);
-    if (archivo.is_open()) {
-        NodoMaterial* actual = inicio;
-        while (actual != nullptr) {
-            MaterialBiblioteca* material = actual->get_material();
-            if (material != nullptr) {
-                archivo << material->getIdMaterial() << endl
-                        << material->getNombreMaterial() << endl
-                        << material->getAutorMaterial() << endl
-                        << material->getAnnoMaterial() << endl;
-            }
-            actual = actual->get_siguienteMaterial();
-        }
-        archivo.close();
-    }
-}
+#include "Libro.h"
+#include "Revista.h"
+#include "Tesis.h"
 
-void Archivo::cargarMaterialBiblioteca(NodoMaterial *&inicio) {
-    ifstream archivo("biblioteca.txt", ios::in);
+string Archivo::siguienteEspacioS(string &linea) {
+    int pos = linea.find(',');
+    string campo;
+    if (pos == (int) string::npos) {
+        campo = linea;
+        linea = "";
+    } else {
+        campo = linea.substr(0, pos);
+        linea = linea.substr(pos + 1);
+    }
+    return campo;
+}
+int Archivo::siguienteEspacioE(int &posicion) {
+    static string linea = "";
+    if (linea.empty()) {
+        linea = to_string(posicion);
+    } else {
+        linea += "," + to_string(posicion);
+    }
+    int pos = linea.find(',');
+    string campo;
+
+    if (pos == (int) string::npos) {
+        campo = linea;
+        linea = "";
+    } else {
+        campo = linea.substr(0, pos);
+        linea = linea.substr(pos + 1);
+    }
+    return stoi(campo);
+}
+void Archivo::guardarMaterialBiblioteca(ListaMaterial *lista, string nombreArchivo) {
+    ofstream archivo(nombreArchivo.c_str());
     if (!archivo.is_open()) {
         return;
     }
-    string line;
-    while (getline(archivo, line)) {
-        stringstream ss(line);
-        string sID, titulo, autor, sAnno;
-        if (getline(ss, sID, '|') &&
-            getline(ss, titulo, '|') &&
-            getline(ss, autor, '|') &&
-            getline(ss, sAnno)) {
-            int id=stoi(sID);
-            int anno=stoi(sAnno);
-            MaterialBiblioteca* material = new MaterialBiblioteca(id,titulo,autor,anno);
-            NodoMaterial* nuevo = new NodoMaterial(material);
-            if (inicio == nullptr) {
-                inicio=nuevo;
-            } else {
-                NodoMaterial* actual = inicio;
-                while (actual->get_siguienteMaterial() != nullptr) {
-                    actual=actual->get_siguienteMaterial();
-                }
-                actual->set_siguienteMaterial(nuevo);
-            }
-            }
+    NodoMaterial *actual = lista->getInicio();
+    while (actual != nullptr) {
+        MaterialBiblioteca *material = actual->get_material();
+        archivo << material->getIdMaterial() << "|" << material->getNombreMaterial() << "|" << material->getAutorMaterial() << "1"
+                << material->getAnnoMaterial() << endl;
+        actual = actual->get_siguienteMaterial();
     }
     archivo.close();
 }
-void Archivo::guardarUsuario(Usuario *usuario) {}
+void Archivo::cargarMaterialBiblioteca(ListaMaterial *lista, string nombreArchivo) {
+    ifstream archivo(nombreArchivo.c_str());
+    if (!archivo.is_open()) {
+        return;
+    }
+    string linea;
+    int lineaE;
+    while (getline(archivo, linea)) {
+        if (linea.empty()) {
+            continue;
+        }
+        int id = siguienteEspacioE(lineaE);
+        string titulo = siguienteEspacioS(linea);
+        string autor = siguienteEspacioS(linea);
+        int annio = siguienteEspacioE(lineaE);
+        string tipo = siguienteEspacioS(linea);
+        string genero = siguienteEspacioS(linea);
+        string grado= siguienteEspacioS(linea);
+        int edicion = siguienteEspacioE(lineaE);
+        int paginas = siguienteEspacioE(lineaE);
+
+        MaterialBiblioteca *material = nullptr;
+        if (tipo == "Revista") {
+            material = new Revista(id,titulo, autor,annio, edicion,genero);
+        } else if (tipo == "Libro") {
+            material = new Libro(id, titulo, autor, annio, paginas, genero);
+        }else if (tipo == "Tesis") {
+            material = new Tesis(id, titulo, autor, annio, grado);
+        }
+
+        if (material != nullptr) {
+            lista->ingresarMaterial(material);
+        }
+    }
+    archivo.close();
+}
+void Archivo::guardarUsuario(ListaPrestamo *lista, string nombreArchivo) {
+    ofstream archivo(nombreArchivo.c_str());
+    if (!archivo.is_open()) {
+        return;
+    }
+    NodoPrestamo *actual = lista->getPrimero();
+    while (actual != nullptr) {
+        Prestamo *prestamo = actual->getDato();
+        archivo << prestamo->getId() << "|" << prestamo->getCliente() << "|"<< prestamo->getMaterial()<<"|"<<prestamo->getFechaPrestamo() << endl;
+        actual = actual->getSiguiente();
+    }
+    archivo.close();
+}
