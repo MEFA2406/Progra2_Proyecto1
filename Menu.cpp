@@ -1,16 +1,13 @@
 #include "Menu.h"
 #include "MaterialBiblioteca.h"
-#include "NodoMaterial.h"
 #include "Archivo.h"
 #include "Prestamo.h"
 #include "Tesis.h"
 #include "Revista.h"
 #include "Libro.h"
-#include "Usuario.h"
-#include "Estudiante.h"
-#include "Biblioteca.h"
 #include <cctype>
 #include <iostream>
+
 Menu::Menu() {
     listaMaterial=new ListaMaterial();
     listaPrestamo=new ListaPrestamo();
@@ -156,9 +153,10 @@ void Menu::menuMaterial() {
     while (opcMat!=0) {
         cout<<"1. Registrar material"<<endl;
         cout<<"2. Listar material"<<endl;
-        cout<<"3. Buscar material"<<endl;
-        cout<<"4. Guardar Material"<<endl;
-        cout<<"5. Cargar material"<<endl;
+        cout<<"3. Buscar material por Id"<<endl;
+        cout<<"4. Buscar material por titulo"<<endl;
+        cout<<"5. Guardar Material"<<endl;
+        cout<<"6. Cargar material"<<endl;
         cout<<"0. Regresar"<<endl;
         cout<<endl;
         cout<<"Seleccione una opcion: "<<endl;
@@ -178,12 +176,15 @@ void Menu::menuMaterial() {
                 listarMaterial();
                 break;
             case 3:
-                buscarMaterial();
+                buscarMaterialID();
                 break;
             case 4:
-                guardarMaterial();
+                buscarMaterialTitulo();
                 break;
             case 5:
+                guardarMaterial();
+                break;
+            case 6:
                 cargarMaterial();
                 break;
             case 0:
@@ -241,6 +242,14 @@ void Menu::registrarPrestamo() {
 }
 //devuelve material y elimina prestamos
 void Menu::devolverMaterial() {
+    int idMaterial;
+    string id;
+    cout << "Id del usuario: ";
+    cin>>id;
+    cout << "Id del material que desea devolver: ";
+    cin>>idMaterial;
+    listaPrestamo->eliminarPrestamoId(id,idMaterial);
+    cout << "Prestamo eliminado correctamente. El material ha sido devuelto." << endl;
 
 }
 //muestra una lista del material existente
@@ -248,34 +257,29 @@ void Menu::listarMaterial() {
     cout<<listaMaterial->toStringMaterial();
 }
 //busca si existe algun titulo o id de material
-void Menu::buscarMaterial() {
+void Menu::buscarMaterialID() {
     int id;
-    string titulo;
-    MaterialBiblioteca* material;
-
-    int opc=0;
-    if (opc==1||opc==2) {
-        cout<<"1. Titulo o 2. Id"<<endl;
-        cin>>id;
-    } else {
+    cin.ignore(10000, '\n');
+    cout << "Id del material que desea buscar: : ";
+    cin>>id;
+    MaterialBiblioteca *material = listaMaterial->obtenerMaterialId(id);
+    if (material == nullptr) {
+        cout << "No se encontro ningun material con ese id" << endl;
         return;
     }
-    switch (opc) {
-        case 1: cout<<"Ingrese tituloa buscar: "<<endl;
-            cin>>titulo;
-            *material=listaMaterial->obtenerMaterialTitulo(titulo);
-            if (material==nullptr) {
-                cout<<"No se encontro ese titulo."<<endl;
-            }
-            break;
-        case 2: cout<<"Ingrese id a buscar: "<<endl;
-            cin>>id;
-            * material=listaMaterial->obtenerMaterialId(id);
-            if (material==nullptr) {
-                cout<<"No se encontro ese id."<<endl;
-            }
-            break;
+    cout << material->toStringMaterial() << endl;
+}
+
+void Menu::buscarMaterialTitulo() {
+    string titulo;
+    cin.ignore(10000, '\n');
+    cout << "Titulo del material que desea buscar: : ";
+    getline(cin, titulo);
+    MaterialBiblioteca *material = listaMaterial->obtenerMaterialTitulo(titulo);
+    if (material == nullptr) {
+        cout << "No se encontro ningun material con ese titulo" << endl;
+        return;
     }
-    cout<<material->toStringMaterial()<<endl;
+    cout << material->toStringMaterial() << endl;
 }
 
