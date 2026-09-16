@@ -18,6 +18,7 @@ public:
     void setPrimero(NodoPrestamo*);
     NodoPrestamo* getPrimero();
     string toString();
+    string formatoGuardar();
 
 };
 

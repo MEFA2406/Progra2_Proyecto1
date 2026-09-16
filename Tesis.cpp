@@ -13,3 +13,7 @@ void Tesis::setGrado(string grado) {
 string Tesis::obtenerTipo() {
  return "Tesis";
 }
+
+string Tesis::toStringMaterial() {
+ return MaterialBiblioteca::toStringMaterial();
+}

@@ -17,3 +17,7 @@ string Libro::getGenero() {
 string Libro::obtenerTipo() {
     return "Libro";
 }
+
+string Libro::toStringMaterial() {
+    return MaterialBiblioteca::toStringMaterial();
+}

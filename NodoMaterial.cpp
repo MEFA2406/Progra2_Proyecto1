@@ -1,5 +1,8 @@
 #include "NodoMaterial.h"
 
+NodoMaterial::NodoMaterial() {
+}
+
 NodoMaterial::NodoMaterial(MaterialBiblioteca *material): material(material){
     siguienteMaterial=nullptr;
 }

@@ -15,7 +15,8 @@ private:
     void setPaginas(int paginas);
     string getGenero();
     int getPaginas();
-    string obtenerTipo();
+    string obtenerTipo() override;
+    string toStringMaterial() override;
 };
 
 

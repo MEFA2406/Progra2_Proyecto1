@@ -10,7 +10,8 @@ private:
     ~Tesis();
     void setGrado(string grado);
     string getGrado();
-    string obtenerTipo();
+    string obtenerTipo() override;
+    string toStringMaterial() override;
 
 };
 

@@ -100,3 +100,10 @@ void Archivo::guardarUsuario(ListaPrestamo *lista, string nombreArchivo) {
     }
     archivo.close();
 }
+
+void Archivo::cargarUsuario(ListaPrestamo *prestamo, string nombreArchivo) {
+}
+
+bool Archivo::archivoValido(string nombreArchivo) {
+    return true;
+}

@@ -1,7 +1,6 @@
 #ifndef PROYECTO1_MATERIALBIBLIOTECA_H
 #define PROYECTO1_MATERIALBIBLIOTECA_H
 #include <string>
-#include "Archivo.h"
 #include <sstream>
 using namespace std;
 
@@ -21,8 +20,8 @@ public:
     void setNombreMaterial(const string nombreMaterial);
     void setAutorMaterial(const string autorMaterial);
     void setAnnoMaterial(const int annoMaterial);
-    virtual string obtenerTipo();
-    string toStringMaterial();
+    virtual string obtenerTipo()=0;
+    virtual string toStringMaterial();
     ~MaterialBiblioteca();
 };
 

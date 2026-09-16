@@ -7,6 +7,11 @@ Revista::Revista(int id, string titulo, string autor, int annio,int edicion, str
 string Revista::obtenerTipo() {
     return "Revista";
 }
+
+string Revista::toStringMaterial() {
+    return MaterialBiblioteca::toStringMaterial();
+}
+
 void Revista::setEdicion(int edicion) {
     this->edicion=edicion;
 }

@@ -19,5 +19,5 @@ string Estudiante::getTipo() const {
 }
 
 string Estudiante::toString() const {
-    return "Nombre: " + nombre + " Carrera: " + carrera;
+    return "ID: "+id+"Nombre: " + nombre + " Carrera: " + carrera;
 }

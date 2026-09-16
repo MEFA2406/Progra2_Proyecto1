@@ -30,6 +30,11 @@ void Menu::inicializarDatos() {
     precargarDatos();
     }
 }
+
+void Menu::precargarDatos() {
+
+}
+
 //Guarda el material
 void Menu::guardarMaterial() {
     Archivo::guardarMaterialBiblioteca(listaMaterial, archivoMaterial);
@@ -200,8 +205,23 @@ void Menu::registrarMaterial() {
     string autor, titulo, tipo, genero, grado;
     int id, annio, paginas, edicion;
     cin.ignore(10000, '\n');
-    cout<<"Ingrese el tipo de material: "<<endl;
-    cin>>tipo;
+    cout<<"Ingrese el tipo de material: ( Libro | Revista | Tesis )"<<endl;
+    getline(cin,tipo);
+    cout<<"ID: ";
+    cin>>id;
+    cin.ignore(10000, '\n');
+    if (listaMaterial->obtenerMaterialId(id)!= nullptr) {
+        cout<<"Ya existe un material con este id"<<endl;
+        return;
+    }
+
+    cout<<"Autor: ";
+    getline(cin,autor);
+    cout<<"Titulo: ";
+    getline(cin,titulo);
+    cout<<"Annio: ";
+    cin>>annio;
+    cin.ignore(10000, '\n');
 
     string tipoMaterial=tipo;
     for (int i=0; i<tipo.length(); i++) {
@@ -209,12 +229,26 @@ void Menu::registrarMaterial() {
     }
     MaterialBiblioteca* material=nullptr;
     if (tipo=="Revista"||tipo=="revista") {
+        cout<<"Edicion: ";
+        cin>>edicion;
+        cin.ignore(10000, '\n');
+        cout<<"Genero: ";
+        getline(cin,genero);
+
         material=new Revista(id,titulo, autor,annio, edicion,genero);
     }
     else if (tipo=="Libro"||tipo=="libro") {
+        cout<<"Genero: ";
+        getline(cin,genero);
+        cout<<"Numero de paginas: ";
+        cin>>paginas;
+        cin.ignore(10000, '\n');
+
         material=new Libro(id, titulo, autor, annio, paginas, genero);
     }
     else if (tipo=="Tesis"||tipo=="tesis") {
+        cout<<"Grado: ";
+        getline(cin,grado);
         material=new Tesis(id, titulo, autor, annio, grado);
     } else {
         cout<<"Opcion invalida."<<endl;

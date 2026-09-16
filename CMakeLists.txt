@@ -32,4 +32,6 @@ add_executable(Proyecto1 main.cpp
         Archivo.h
         Biblioteca.cpp
         Biblioteca.h
+        Profesor.cpp
+        Profesor.h
 )

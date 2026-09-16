@@ -15,7 +15,7 @@ ListaPrestamo::~ListaPrestamo() {
     }
 }
 void ListaPrestamo::setPrimero(NodoPrestamo* primero) {
-    NodoPrestamo* actual = primero;
+    this->primero = primero;
 }
 NodoPrestamo* ListaPrestamo::getPrimero() {
     return primero;
@@ -63,6 +63,15 @@ string ListaPrestamo::toString() {
     while (actual!=nullptr) {
         ss<<actual->toString()<<endl;
         actual = actual->getSiguiente();
+    }
+    return ss.str();
+}
+
+string ListaPrestamo::formatoGuardar() {
+    stringstream ss;
+    NodoPrestamo* actual = primero;
+    while (actual!=nullptr) {
+
     }
     return ss.str();
 }

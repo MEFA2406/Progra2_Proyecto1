@@ -12,7 +12,8 @@ class Revista: public MaterialBiblioteca {
     int getEdicion();
     void setGenero(string genero);
     string getGenero();
-    string obtenerTipo();
+    string obtenerTipo() override;
+    string toStringMaterial() override;
 };
 
 
