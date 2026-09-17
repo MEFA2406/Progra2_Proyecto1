@@ -13,9 +13,10 @@ public:
     ListaPrestamo();
     ~ListaPrestamo();
     void eliminarPrimero();
-    bool eliminarPrestamoId(string idUsuario, int idMaterial);
+    bool eliminarPrestamoId(string id);
     void agregarPrimero(Prestamo *elPrestamo);
     void setPrimero(NodoPrestamo*);
+    Prestamo* buscarID(string id);
     NodoPrestamo* getPrimero();
     string toString();
     string formatoGuardar();

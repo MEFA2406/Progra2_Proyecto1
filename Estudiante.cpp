@@ -20,11 +20,11 @@ string Estudiante::getTipo() const {
 }
 
 string Estudiante::toString() const {
-    return "ID: "+id+"Nombre: " + nombre + " Carrera: " + carrera;
+    return "ID: "+id+" | Nombre: " + nombre + " | Carrera: " + carrera;
 }
 
 string Estudiante::formatoGuardar() {
     stringstream ss;
     ss<<Usuario::formatoGuardar()<<carrera;
-    ss<<endl;
+    return ss.str();
 }

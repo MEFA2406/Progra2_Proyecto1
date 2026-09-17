@@ -2,7 +2,9 @@
 #include "MaterialBiblioteca.h"
 #include <fstream>
 
+#include "Estudiante.h"
 #include "Libro.h"
+#include "Profesor.h"
 #include "Revista.h"
 #include "Tesis.h"
 
@@ -102,9 +104,44 @@ void Archivo::cargarMaterialBibliotecaV2(ListaMaterial *material, string nombreA
 }
 
 void Archivo::cargarPrestamos(ListaPrestamo *prestamos, string nombreArchivo) {
+    ifstream archivo(nombreArchivo.c_str());
+    if (!archivo.is_open()) {
+        return;
+    }
+    string linea;
+    while (getline(archivo, linea)) {
+        Usuario* cliente=nullptr;
+        string idPrestamo,idCliente,idMaterial,fecha,nombre,tipo;
+        stringstream ss(linea);
+        getline(ss,idPrestamo,',');
+        getline(ss,fecha,',');
+        getline(ss,idMaterial,',');
+        getline(ss,idCliente,',');
+        getline(ss,nombre,',');
+        getline(ss,tipo,',');
+        if (tipo == "Profesor") {
+            string departamento;
+            getline(ss,departamento,',');
+            cliente = new Profesor(departamento,nombre,idCliente);
+        }else if (tipo == "Estudiante") {
+            string carrera;
+            getline(ss,carrera,',');
+            cliente = new Estudiante(carrera,nombre,idCliente);
+        }
+        if (cliente != nullptr) {
+            prestamos->agregarPrimero(new Prestamo(idPrestamo,idMaterial,cliente,fecha));
+        }
+    }
+    archivo.close();
 }
 
 void Archivo::guardarPrestamos(ListaPrestamo *prestamos, string nombreArchivo) {
+    ofstream archivo(nombreArchivo.c_str());
+    if (!archivo.is_open()) {
+        return;
+    }
+    archivo<< prestamos->formatoGuardar();
+    archivo.close();
 }
 
 void Archivo::cargarMaterialBiblioteca(ListaMaterial *lista, string nombreArchivo) {
@@ -158,6 +195,7 @@ void Archivo::guardarUsuario(ListaPrestamo *lista, string nombreArchivo) {
 }
 
 void Archivo::cargarUsuario(ListaPrestamo *prestamo, string nombreArchivo) {
+
 }
 
 bool Archivo::archivoValido(string nombreArchivo) {

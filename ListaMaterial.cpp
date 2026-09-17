@@ -1,5 +1,4 @@
 #include "ListaMaterial.h"
-#include <iostream>
 ListaMaterial::ListaMaterial() {
     inicio = nullptr;
     actual = nullptr;
@@ -25,7 +24,6 @@ string ListaMaterial::formatoGuardar() {
         }
         actual = actual->get_siguienteMaterial();
     }
-    cout<<ss.str()<<endl;
     return ss.str();
 }
 

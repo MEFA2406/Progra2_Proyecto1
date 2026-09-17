@@ -17,6 +17,19 @@ ListaPrestamo::~ListaPrestamo() {
 void ListaPrestamo::setPrimero(NodoPrestamo* primero) {
     this->primero = primero;
 }
+
+Prestamo * ListaPrestamo::buscarID(string id) {
+    auto actual = primero;
+    while (actual != nullptr) {
+        if (actual->getDato()->getId() == id) {
+            return actual->getDato();
+        }else {
+            actual = actual->getSiguiente();
+        }
+    }
+    return nullptr;
+}
+
 NodoPrestamo* ListaPrestamo::getPrimero() {
     return primero;
 }
@@ -28,7 +41,7 @@ void ListaPrestamo::eliminarPrimero() {
     }
 }
 
-bool ListaPrestamo::eliminarPrestamoId(string id, int idMaterial) {
+bool ListaPrestamo::eliminarPrestamoId(string id) {
     NodoPrestamo* actual = primero;
 
     if (primero != nullptr) {
@@ -61,7 +74,7 @@ string ListaPrestamo::toString() {
     stringstream ss;
     NodoPrestamo* actual = primero;
     while (actual!=nullptr) {
-        ss<<actual->toString()<<endl;
+        ss<<actual->toString()<<endl<<"============"<<endl;
         actual = actual->getSiguiente();
     }
     return ss.str();
@@ -71,7 +84,7 @@ string ListaPrestamo::formatoGuardar() {
     stringstream ss;
     NodoPrestamo* actual = primero;
     while (actual!=nullptr) {
-        ss<<actual->getDato()->getCliente()->formatoGuardar();
+        ss<<actual->getDato()->formatoGuardar();
         if (actual->getSiguiente() != nullptr) {
             ss<<endl;
         }

@@ -21,6 +21,6 @@ string Usuario::getId() const {
 
 string Usuario::formatoGuardar() {
     stringstream ss;
-    ss<<id<<","<<nombre<<",";
+    ss<<id<<","<<nombre<<","<<getTipo()<<",";
     return ss.str();
 }

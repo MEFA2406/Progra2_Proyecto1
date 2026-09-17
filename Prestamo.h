@@ -28,6 +28,7 @@ public:
     void setFechaPrestamo(string fechaPrestamo);
 
     string toString();
+    string formatoGuardar();
 };
 
 

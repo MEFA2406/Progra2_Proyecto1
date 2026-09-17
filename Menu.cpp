@@ -52,14 +52,14 @@ void Menu::cargarMaterial() {
 }
 //guarda los prestamos
 void Menu::guardarPrestamo() {
-    Archivo::guardarUsuario(listaPrestamo, archivoPrestamo);
+    Archivo::guardarPrestamos(listaPrestamo, archivoPrestamo);
     cout << "Datos guardados correctamente"<<endl;
 }
 //carga los prestamos
 void Menu::cargarPrestamo() {
     delete listaPrestamo;
     listaPrestamo = new ListaPrestamo();
-    Archivo::cargarUsuario(listaPrestamo, archivoPrestamo);
+    Archivo::cargarPrestamos(listaPrestamo, archivoPrestamo);
     cout << "Datos cargados correctamente." << endl;
 }
 //Menu de inicio
@@ -119,8 +119,9 @@ int opcPres=-1;
     while (opcPres!=0) {
         cout<<"1. Registrar prestamo"<<endl;
         cout<<"2. Devolver prestamo"<<endl;
-        cout<<"3. Guardar prestamo"<<endl;
-        cout<<"4. Cargar prestamo"<<endl;
+        cout<<"3. Mostrar prestamos"<<endl;
+        cout<<"4. Guardar prestamo"<<endl;
+        cout<<"5. Cargar prestamo"<<endl;
         cout<<"0. Regresar"<<endl;
         cout<<endl;
         cout<<"Seleccione una opcion: "<<endl;
@@ -140,9 +141,12 @@ int opcPres=-1;
                 devolverMaterial();
                 break;
             case 3:
-               guardarPrestamo();
+                cout<<listaPrestamo->toString();
                 break;
             case 4:
+               guardarPrestamo();
+                break;
+            case 5:
                cargarPrestamo();
                 break;
             case 0:
@@ -305,14 +309,25 @@ void Menu::registrarPrestamo() {
 }
 //devuelve material y elimina prestamos
 void Menu::devolverMaterial() {
-    int idMaterial;
     string id;
-    cout << "Id del usuario: ";
-    cin>>id;
-    cout << "Id del material que desea devolver: ";
-    cin>>idMaterial;
-    listaPrestamo->eliminarPrestamoId(id,idMaterial);
-    cout << "Prestamo eliminado correctamente. El material ha sido devuelto." << endl;
+    cout << "Id del prestamo que desea devolver: ";
+    cin.ignore(10000, '\n');
+    getline(cin,id);
+    auto prestamo = listaPrestamo->buscarID(id);
+    if (prestamo == nullptr) {
+        cout<<"ID no es valido"<<endl;
+        return;
+    }
+    cout<<prestamo->toString()<<endl;
+    cout<<"Desea devolver este prestamo: 1=SI 0=NO";
+    int opcion;
+    cin>>opcion;
+    if (opcion == 1) {
+        listaPrestamo->eliminarPrestamoId(id);
+        cout << "Prestamo eliminado correctamente. El material ha sido devuelto." << endl;
+    }else {
+        cout<<"No se ha devuelto el prestamo."<<endl;
+    }
 
 }
 //muestra una lista del material existente

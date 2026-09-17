@@ -45,9 +45,15 @@ Usuario* Prestamo::getCliente() {
 
 string Prestamo::toString() {
     stringstream ss;
-    ss << "Id del prestamo" << this->id << endl;
-    ss<<"Nombre del usuario: "<<this->usuario<<endl;
-    ss << "Informacion del material: " << this->material<<endl;
-    ss<<"Fecha del prestamo: "<<this->fechaPrestamo;
+    ss << "ID: " << this->id << endl;
+    ss<<"Fecha del prestamo: "<<this->fechaPrestamo<<endl;
+    ss << "ID del material: " << this->material<<endl;
+    ss<<"Informacion del usuario:\n"<<this->usuario->toString();
+    return ss.str();
+}
+
+string Prestamo::formatoGuardar() {
+    stringstream ss;
+    ss<<id<<","<<fechaPrestamo<<","<<material<<","<<usuario->formatoGuardar();
     return ss.str();
 }

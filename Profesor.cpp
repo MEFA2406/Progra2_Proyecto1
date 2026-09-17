@@ -7,7 +7,7 @@
 #include <ostream>
 #include <sstream>
 
-Profesor::Profesor(string departamento, string nombre, string id) : Usuario(nombre,id){
+Profesor::Profesor(string departamento, string nombre, string id) : Usuario(nombre,id),departamento(departamento){
 }
 
 string Profesor::getTipo() const {
@@ -19,7 +19,7 @@ string Profesor::getDepartamento() const {
 }
 
 string Profesor::toString() const {
-    return "ID: "+id+"Nombre: "+nombre+" departamento: "+departamento;
+    return "ID: "+id+" | Nombre: "+nombre+" | Departamento: "+departamento;
 }
 
 string Profesor::formatoGuardar() {
