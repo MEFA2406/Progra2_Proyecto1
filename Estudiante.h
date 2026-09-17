@@ -18,6 +18,7 @@ public:
     string getTipo() const override;
     string toString() const override;
 
+    string formatoGuardar() override;
 };
 
 

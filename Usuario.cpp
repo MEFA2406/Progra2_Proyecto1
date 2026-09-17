@@ -3,6 +3,7 @@
 //
 
 #include "Usuario.h"
+#include <sstream>
 
 Usuario::Usuario(string nombre, string id): nombre(nombre), id(id) {
 }
@@ -16,4 +17,10 @@ string Usuario::getNombre() const {
 
 string Usuario::getId() const {
     return id;
+}
+
+string Usuario::formatoGuardar() {
+    stringstream ss;
+    ss<<id<<","<<nombre<<",";
+    return ss.str();
 }

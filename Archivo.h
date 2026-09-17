@@ -7,9 +7,11 @@
 class Archivo {
 public:
     static void guardarMaterialBiblioteca(ListaMaterial* material, string nombreArchivo);
+    static void cargarMaterialBiblioteca(ListaMaterial* material, string nombreArchivo);
     static void guardarMaterialBibliotecaV2(ListaMaterial* material, string nombreArchivo);
     static void cargarMaterialBibliotecaV2(ListaMaterial* material, string nombreArchivo);
-    static void cargarMaterialBiblioteca(ListaMaterial* material, string nombreArchivo);
+    static void cargarPrestamos(ListaPrestamo* prestamos, string nombreArchivo);
+    static void guardarPrestamos(ListaPrestamo* prestamos, string nombreArchivo);
     static void guardarUsuario(ListaPrestamo* prestamo, string nombreArchivo);
     static void cargarUsuario(ListaPrestamo* prestamo, string nombreArchivo);
     static bool archivoValido(string nombreArchivo);

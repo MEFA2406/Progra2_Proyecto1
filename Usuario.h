@@ -22,6 +22,8 @@ public:
     virtual string getTipo() const =0;
     virtual string toString() const=0;
 
+    virtual string formatoGuardar();
+
 };
 
 

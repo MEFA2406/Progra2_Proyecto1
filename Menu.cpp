@@ -27,7 +27,7 @@ void Menu::inicializarDatos() {
     bool hayMaterial= Archivo::archivoValido(archivoMaterial);
     bool hayPrestamo= Archivo::archivoValido(archivoPrestamo);
     if (hayMaterial && hayPrestamo) {
-        Archivo::cargarMaterialBiblioteca(listaMaterial, archivoMaterial);
+        Archivo::cargarMaterialBibliotecaV2(listaMaterial, archivoMaterial);
         Archivo::cargarUsuario(listaPrestamo, archivoPrestamo);
     } else {
     precargarDatos();
@@ -262,38 +262,45 @@ void Menu::registrarMaterial() {
 }
 //registra prestamos
 void Menu::registrarPrestamo() {
-    string tipo,id, usuario, fechaPrestamo;
-    int idMaterial;
-
+    string tipo,idUsuario,idPrestamo, usuario, fechaPrestamo,material;
+    cin.ignore(10000, '\n');
     cout<<"Ingrese el tipo de usuario: ( Profesor | Estudiante )";
     getline(cin,tipo);
     cout << "Id del usuario: ";
-    getline(cin, id);
+    getline(cin, idUsuario);
     cout << "Nombre de usuario: ";
     getline(cin, usuario);
+    Usuario* cliente = nullptr;
     if (tipo == "Profesor" || tipo == "profesor") {
         string departamento;
         cout<<"Departamento: ";
         getline(cin,departamento);
-        new Profesor(departamento,usuario,id);
+        cliente = new Profesor(departamento,usuario,idUsuario);
     }else if (tipo == "Estudiante" || tipo == "estudiante") {
         string carrera;
         cout<<"Carrera: ";
         getline(cin,carrera);
-        new Estudiante(carrera,usuario,id);
+        cliente = new Estudiante(carrera,usuario,idUsuario);
     }else {
         cout<<"Opcion invalida."<<endl;
         return;
     }
+    if (cliente == nullptr) {
+        cout<<"No se pudo crear el cliente"<<endl;
+        return;
+    }
     cout << "Id del material: ";
-    cin>>idMaterial;
-    cin.ignore(10000, '\n');
-
+    getline(cin,material);
+    if (listaMaterial->obtenerMaterialId(stoi(material)) == nullptr) {
+        cout<<"No se encontro el material"<<endl;
+        return;
+    }
+    cout<<"Ingrese ID del prestamo: ";
+    getline(cin,idPrestamo);
     cout << "Fecha del Prestamo: ";
     getline(cin, fechaPrestamo);
-    Prestamo* prestamo = new Prestamo("","","","");
+    Prestamo* prestamo = new Prestamo(idPrestamo,material,cliente,fechaPrestamo);
     listaPrestamo->agregarPrimero(prestamo);
-
     cout << "Prestamo registrado correctamente." << endl;
 }
 //devuelve material y elimina prestamos

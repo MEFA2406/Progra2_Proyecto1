@@ -5,7 +5,7 @@
 #include "Prestamo.h"
 #include "sstream"
 
-Prestamo::Prestamo(string id, string material, string usuario, string fecha) {
+Prestamo::Prestamo(string id, string material, Usuario* usuario, string fecha) {
     this->id = id;
     this->material = material;
     this->usuario = usuario;
@@ -31,7 +31,7 @@ void Prestamo::setMaterial(string material) {
     this->material = material;
 }
 
-void Prestamo::setCliente(string usuario) {
+void Prestamo::setCliente(Usuario* usuario) {
     this->usuario = usuario;
 }
 
@@ -39,7 +39,7 @@ void Prestamo::setFechaPrestamo(string fechaPrestamo) {
     this->fechaPrestamo = fechaPrestamo;
 }
 
-string Prestamo::getCliente() {
+Usuario* Prestamo::getCliente() {
     return this->usuario;
 }
 

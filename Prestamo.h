@@ -11,20 +11,20 @@
 class Prestamo {
 private:
     string id;
-    string usuario;
+    Usuario* usuario;
     string material;
     string fechaPrestamo;
 public:
-    Prestamo(string id, string material, string usuario, string fechaPrestamo);
+    Prestamo(string id, string material, Usuario* usuario, string fechaPrestamo);
     ~Prestamo();
 
     string getId();
     string getMaterial();
-    string getCliente();
+    Usuario* getCliente();
     string getFechaPrestamo();
 
     void setMaterial(string material);
-    void setCliente(string usuario);
+    void setCliente(Usuario* usuario);
     void setFechaPrestamo(string fechaPrestamo);
 
     string toString();

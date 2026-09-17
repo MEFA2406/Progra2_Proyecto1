@@ -4,6 +4,9 @@
 
 #include "Profesor.h"
 
+#include <ostream>
+#include <sstream>
+
 Profesor::Profesor(string departamento, string nombre, string id) : Usuario(nombre,id){
 }
 
@@ -17,4 +20,10 @@ string Profesor::getDepartamento() const {
 
 string Profesor::toString() const {
     return "ID: "+id+"Nombre: "+nombre+" departamento: "+departamento;
+}
+
+string Profesor::formatoGuardar() {
+    stringstream ss;
+    ss<<Usuario::formatoGuardar()<<departamento;
+    return ss.str();
 }

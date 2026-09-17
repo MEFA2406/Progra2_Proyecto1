@@ -71,7 +71,11 @@ string ListaPrestamo::formatoGuardar() {
     stringstream ss;
     NodoPrestamo* actual = primero;
     while (actual!=nullptr) {
-
+        ss<<actual->getDato()->getCliente()->formatoGuardar();
+        if (actual->getSiguiente() != nullptr) {
+            ss<<endl;
+        }
+        actual = actual->getSiguiente();
     }
     return ss.str();
 }

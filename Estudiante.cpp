@@ -3,6 +3,7 @@
 //
 
 #include "Estudiante.h"
+#include <sstream>
 
 Estudiante::Estudiante(string carrera, string nombre, string id): Usuario(nombre, id), carrera(carrera) {
 }
@@ -20,4 +21,10 @@ string Estudiante::getTipo() const {
 
 string Estudiante::toString() const {
     return "ID: "+id+"Nombre: " + nombre + " Carrera: " + carrera;
+}
+
+string Estudiante::formatoGuardar() {
+    stringstream ss;
+    ss<<Usuario::formatoGuardar()<<carrera;
+    ss<<endl;
 }

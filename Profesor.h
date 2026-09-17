@@ -16,6 +16,7 @@ public:
     string getTipo() const override;
     string getDepartamento() const;
     string toString() const override;
+    string formatoGuardar() override;
 };
 
 

@@ -101,6 +101,12 @@ void Archivo::cargarMaterialBibliotecaV2(ListaMaterial *material, string nombreA
     archivo.close();
 }
 
+void Archivo::cargarPrestamos(ListaPrestamo *prestamos, string nombreArchivo) {
+}
+
+void Archivo::guardarPrestamos(ListaPrestamo *prestamos, string nombreArchivo) {
+}
+
 void Archivo::cargarMaterialBiblioteca(ListaMaterial *lista, string nombreArchivo) {
     ifstream archivo(nombreArchivo.c_str());
     if (!archivo.is_open()) {
