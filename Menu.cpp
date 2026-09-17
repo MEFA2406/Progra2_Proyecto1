@@ -319,7 +319,9 @@ void Menu::devolverMaterial() {
         return;
     }
     cout<<prestamo->toString()<<endl;
-    cout<<"Desea devolver este prestamo: 1=SI 0=NO";
+    cout<<"===Informacion del material==="<<endl;
+    cout<<listaMaterial->obtenerMaterialId(stoi(prestamo->getMaterial()))->toStringMaterial();
+    cout<<"Desea devolver este prestamo: 1=SI 0=NO"<<endl;
     int opcion;
     cin>>opcion;
     if (opcion == 1) {
