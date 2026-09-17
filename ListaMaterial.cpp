@@ -1,4 +1,5 @@
 #include "ListaMaterial.h"
+#include <iostream>
 ListaMaterial::ListaMaterial() {
     inicio = nullptr;
     actual = nullptr;
@@ -12,6 +13,20 @@ ListaMaterial::~ListaMaterial() {
     if (inicio != nullptr) {
         removerMaterial();
     }
+}
+
+string ListaMaterial::formatoGuardar() {
+    actual = inicio;
+    stringstream ss;
+    while (actual != nullptr) {
+        ss<<actual->get_material()->formatoGuardar();
+        if (actual->get_siguienteMaterial() != nullptr) {
+            ss<<endl;
+        }
+        actual = actual->get_siguienteMaterial();
+    }
+    cout<<ss.str()<<endl;
+    return ss.str();
 }
 
 NodoMaterial *ListaMaterial::getActual() {

@@ -51,6 +51,56 @@ void Archivo::guardarMaterialBiblioteca(ListaMaterial *lista, string nombreArchi
     }
     archivo.close();
 }
+
+void Archivo::guardarMaterialBibliotecaV2(ListaMaterial *material, string nombreArchivo) {
+    ofstream archivo(nombreArchivo.c_str());
+    if (!archivo.is_open()) {
+        return;
+    }
+    archivo << material->formatoGuardar();
+    archivo.close();
+}
+
+void Archivo::cargarMaterialBibliotecaV2(ListaMaterial *material, string nombreArchivo) {
+    ifstream archivo(nombreArchivo.c_str());
+    if (!archivo.is_open()) {
+        return;
+    }
+    string linea;
+    while (getline(archivo, linea)) {
+        string id,nombre,autor,annio,tipo;
+        int idInt,annioInt;
+        stringstream ss(linea);
+        getline(ss,id,',');
+        idInt = stoi(id);
+        getline(ss,nombre,',');
+        getline(ss,autor,',');
+        getline(ss,annio,',');
+        annioInt = stoi(annio);
+        getline(ss,tipo,',');
+        if (tipo == "Libro" ) {
+            string paginas, genero;
+            int paginasInt;
+            getline(ss,paginas,',');
+            paginasInt = stoi(paginas);
+            getline(ss,genero,',');
+            material->ingresarMaterial(new Libro(idInt,nombre,autor,annioInt,paginasInt,genero));
+        }else if (tipo == "Tesis") {
+            string grado;
+            getline(ss,grado,',');
+            material->ingresarMaterial(new Tesis(idInt,nombre,autor,annioInt,grado));
+        }else if (tipo == "Revista") {
+            string edicion,genero;
+            int edicionInt;
+            getline(ss,edicion,',');
+            edicionInt = stoi(edicion);
+            getline(ss,genero,',');
+            material->ingresarMaterial(new Revista(idInt, nombre,autor,annioInt,edicionInt,genero));
+        }
+    }
+    archivo.close();
+}
+
 void Archivo::cargarMaterialBiblioteca(ListaMaterial *lista, string nombreArchivo) {
     ifstream archivo(nombreArchivo.c_str());
     if (!archivo.is_open()) {

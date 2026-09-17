@@ -17,7 +17,10 @@ private:
     int getPaginas();
     string obtenerTipo() override;
     string toStringMaterial() override;
+    string formatoGuardar() override;
 };
+
+
 
 
 #endif //PROYECTO1_LIBRO_H

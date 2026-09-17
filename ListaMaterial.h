@@ -20,6 +20,8 @@ public:
     MaterialBiblioteca* obtenerMaterialTitulo(string titulo);
     MaterialBiblioteca* obtenerMaterialId(int id);
     ~ListaMaterial();
+
+    string formatoGuardar();
 };
 
 

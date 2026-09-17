@@ -36,5 +36,11 @@ string MaterialBiblioteca::toStringMaterial() {
     return ss.str();
 }
 
+string MaterialBiblioteca::formatoGuardar() {
+    stringstream ss;
+    ss<<idMaterial<<","<<nombreMaterial<<","<<autorMaterial<<","<<annoMaterial<<","<<obtenerTipo()<<",";
+    return ss.str();
+}
+
 MaterialBiblioteca::~MaterialBiblioteca() {
 }

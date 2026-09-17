@@ -13,6 +13,7 @@ private:
     string obtenerTipo() override;
     string toStringMaterial() override;
 
+    string formatoGuardar() override;
 };
 
 

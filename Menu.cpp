@@ -8,6 +8,9 @@
 #include <cctype>
 #include <iostream>
 
+#include "Estudiante.h"
+#include "Profesor.h"
+
 Menu::Menu() {
     listaMaterial=new ListaMaterial();
     listaPrestamo=new ListaPrestamo();
@@ -37,14 +40,14 @@ void Menu::precargarDatos() {
 
 //Guarda el material
 void Menu::guardarMaterial() {
-    Archivo::guardarMaterialBiblioteca(listaMaterial, archivoMaterial);
+    Archivo::guardarMaterialBibliotecaV2(listaMaterial, archivoMaterial);
     cout << "Datos guardados correctamente"<<endl;
 }
 //Carga el material
 void Menu::cargarMaterial() {
     delete listaMaterial;
     listaMaterial = new ListaMaterial();
-    Archivo::cargarMaterialBiblioteca(listaMaterial, archivoMaterial);
+    Archivo::cargarMaterialBibliotecaV2(listaMaterial, archivoMaterial);
     cout << "Datos cargados correctamente." << endl;
 }
 //guarda los prestamos
@@ -259,17 +262,36 @@ void Menu::registrarMaterial() {
 }
 //registra prestamos
 void Menu::registrarPrestamo() {
-    string id, usuario, material, fechaPrestamo;
+    string tipo,id, usuario, fechaPrestamo;
+    int idMaterial;
 
+    cout<<"Ingrese el tipo de usuario: ( Profesor | Estudiante )";
+    getline(cin,tipo);
     cout << "Id del usuario: ";
     getline(cin, id);
     cout << "Nombre de usuario: ";
     getline(cin, usuario);
-    cout << "Material: ";
-    getline(cin, material);
+    if (tipo == "Profesor" || tipo == "profesor") {
+        string departamento;
+        cout<<"Departamento: ";
+        getline(cin,departamento);
+        new Profesor(departamento,usuario,id);
+    }else if (tipo == "Estudiante" || tipo == "estudiante") {
+        string carrera;
+        cout<<"Carrera: ";
+        getline(cin,carrera);
+        new Estudiante(carrera,usuario,id);
+    }else {
+        cout<<"Opcion invalida."<<endl;
+        return;
+    }
+    cout << "Id del material: ";
+    cin>>idMaterial;
+    cin.ignore(10000, '\n');
+
     cout << "Fecha del Prestamo: ";
     getline(cin, fechaPrestamo);
-    Prestamo *prestamo = new Prestamo(id, usuario, material, fechaPrestamo);
+    Prestamo* prestamo = new Prestamo("","","","");
     listaPrestamo->agregarPrimero(prestamo);
 
     cout << "Prestamo registrado correctamente." << endl;

@@ -5,6 +5,8 @@
 #ifndef PROYECTO1_PRESTAMO_H
 #define PROYECTO1_PRESTAMO_H
 #include "MaterialBiblioteca.h"
+#include "Usuario.h"
+
 
 class Prestamo {
 private:

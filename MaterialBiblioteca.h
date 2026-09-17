@@ -22,6 +22,7 @@ public:
     void setAnnoMaterial(const int annoMaterial);
     virtual string obtenerTipo()=0;
     virtual string toStringMaterial();
+    virtual string formatoGuardar();
     ~MaterialBiblioteca();
 };
 
